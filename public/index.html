@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+  <html>
+    <head>
+      <!--Import Google Icon Font-->
+      <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+      <!--Let browser know website is optimized for mobile-->
+      <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+      <link rel="shortcut icon" type="image/png" href="images/icon.png"/>
+      <link href="images/icon.png" rel="apple-touch-icon" />
+      <link href="images/icon.png" rel="apple-touch-icon" sizes="152x152" />
+      <link href="images/icon.png" rel="apple-touch-icon" sizes="167x167" />
+      <link href="images/icon.png" rel="apple-touch-icon" sizes="180x180" />
+      <link href="images/icon.png" rel="icon" sizes="192x192" />
+      <link href="images/icon.png" rel="icon" sizes="128x128" />
+      <!-- Compiled and minified CSS -->
+      <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css">
+      <link rel="stylesheet" href="css/style.css">
+      <!-- Compiled and minified JavaScript -->
+      <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
+      <!--Firestore-->
+      <script src="https://www.gstatic.com/firebasejs/4.12.1/firebase.js"></script>
+      <script src="https://www.gstatic.com/firebasejs/4.12.1/firebase-firestore.js"></script>
+      <script src="js/firebase.js"></script>
+      <script src="js/index.js"></script>
+            
+    </head>
+    <body class="grey lighten-4">
+    <!--Navbar-->
+    <div class="navbar-fixed">
+      <nav>
+        <div class="nav-wrapper white z-depth-2">
+          <a href="#" class="brand-logo center"><img src="images/logo.png" class="responsive-img" /></a>
+        </div>
+      </nav>
+    </div>
+    
+    <div class="container">
+       <!--Nuevo proyecto-->
+      <div class="row">
+        <div class="col s12 white z-depth-1">
+          <h5 class="card-title">Nuevo proyecto <span class="grey-text title-span">Registrar/editar los datos de un proyecto.</span></h5>
+          
+          <form class="col s12">
+            <div class="row">
+              <div class="input-field col s12">
+                <input placeholder="Nombre del cliente" id="name" type="text" class="validate">
+                <label for="name">Nombre del cliente</label>
+              </div>
+            </div>
+            <div class="row">
+              <div class="input-field col s12 m6">
+                <input placeholder="Fuente de contacto" id="contact" type="text" class="validate">
+                <label for="contact">Fuente de contacto</label>
+              </div>
+               <div class="input-field col s12 m6">
+                <input placeholder="Costo del proyecto" id="cost" type="text" class="validate">
+                <label for="cost">Costo del proyecto</label>
+              </div>
+            </div>
+            <div class="row">
+              <div class="input-field col s12 m6">
+                <input placeholder="Fecha de inicio" id="start_date" type="text" class="validate">
+                <label for="start_date">Fecha de inicio</label>
+              </div>
+               <div class="input-field col s12 m6">
+                <input placeholder="Fecha compromiso" id="deadline" type="text" class="validate">
+                <label for="deadline">Fecha compromiso</label>
+              </div>
+            </div>
+            <div class="row">
+              <div class="input-field col s12">
+                <input placeholder="URL" id="url" type="text" class="validate">
+                <label for="url">URL</label>
+              </div>
+            </div>
+          </form>
+        </div>
+      </div>
+      <!--Lista de proyectos-->
+      <div class="row">
+        <ul class="collapsible">
+          <li>
+            <div class="collapsible-header"><i class="material-icons">filter_drama</i>First</div>
+            <div class="collapsible-body"><span>Lorem ipsum dolor sit amet.</span></div>
+          </li>
+          <li>
+            <div class="collapsible-header"><i class="material-icons">place</i>Second</div>
+            <div class="collapsible-body"><span>Lorem ipsum dolor sit amet.</span></div>
+          </li>
+          <li>
+            <div class="collapsible-header"><i class="material-icons">whatshot</i>Third</div>
+            <div class="collapsible-body"><span>Lorem ipsum dolor sit amet.</span></div>
+          </li>
+        </ul>
+      </div>
+    </div>  
+    </body>
+  </html>
