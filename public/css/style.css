@@ -2,6 +2,14 @@
   background-color: #56CCF2;
   color: #FFF;
 }
+.preloader-wrapper{
+  position: absolute;
+  top :0;
+left: 0;
+right: 0;
+bottom: 0;
+margin: auto;
+}
 .title-span{
   font-size: 13px;
 }
