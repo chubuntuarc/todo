@@ -1,3 +1,13 @@
+.btn:hover{
+  background-color: #56CCF2;
+  color: #FFF;
+}
 .title-span{
   font-size: 13px;
+}
+.sidenav-trigger{
+  left: 10px;
+  position: fixed;
+  top: 20px;
+  z-index: 997;
 }
