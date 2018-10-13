@@ -57,38 +57,44 @@
           <form class="col s12">
             <div class="row">
               <div class="input-field col s12">
-                <input placeholder="Nombre del cliente" id="name" type="text" class="validate">
+                <input placeholder="Nombre del cliente" id="name" type="text" class="validate" required>
                 <label for="name">Nombre del cliente</label>
               </div>
             </div>
             <div class="row">
+              <div class="input-field col s12">
+                <input placeholder="Descripción del proyecto" id="description" type="text" class="validate" required>
+                <label for="description">Descripción del proyecto</label>
+              </div>
+            </div>
+            <div class="row">
               <div class="input-field col s12 m6">
-                <input placeholder="Fuente de contacto" id="contact" type="text" class="validate">
+                <input placeholder="Fuente de contacto" id="contact" type="text" class="validate" required>
                 <label for="contact">Fuente de contacto</label>
               </div>
                <div class="input-field col s12 m6">
-                <input placeholder="Costo del proyecto" id="cost" type="text" class="validate">
+                <input placeholder="Costo del proyecto" id="cost" type="text" class="validate" required>
                 <label for="cost">Costo del proyecto</label>
               </div>
             </div>
             <div class="row">
               <div class="input-field col s12 m6">
-                <input placeholder="Fecha de inicio" id="start_date" type="text" class="validate">
+                <input placeholder="Fecha de inicio" id="start_date" type="text" class="validate" required>
                 <label for="start_date">Fecha de inicio</label>
               </div>
                <div class="input-field col s12 m6">
-                <input placeholder="Fecha compromiso" id="deadline" type="text" class="validate">
+                <input placeholder="Fecha compromiso" id="deadline" type="text" class="validate" required>
                 <label for="deadline">Fecha compromiso</label>
               </div>
             </div>
             <div class="row">
               <div class="input-field col s12">
-                <input placeholder="URL" id="url" type="text" class="validate">
+                <input placeholder="URL" id="url" type="text" class="validate" required>
                 <label for="url">URL</label>
               </div>
             </div>
             <div class="row right-align">
-              <button class="btn waves-effect waves-light btn-flat" type="submit" name="action">Guardar</button>  
+              <button class="btn waves-effect waves-light btn-flat" onclick="saveProject()">Guardar</button>  
             </div>
           </form>
         </div>
