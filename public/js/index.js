@@ -33,16 +33,13 @@ function getProjects(){
   projectsRef.orderBy("name").onSnapshot(function(doc) {
         //Cleaning projectc list
         document.getElementById("projects_list").innerHTML = '';
-        //Check data source
-        var source = doc.metadata.hasPendingWrites ? "Local" : "Server";
-        console.log(source);
         //Get data
         doc.forEach(doc =>{
         var ul = document.getElementById("projects_list");
         var li = document.createElement("li");
         //Inner li data
         var data = '<div class="collapsible-header">'+doc.data().name+' <span class="badge">'+doc.data().deadline+'</span></div>';
-        data += '<div class="collapsible-body"><span>'+doc.data().description+'</span></div>';
+        data += '<div class="collapsible-body"><span>'+doc.data().description+'</span><span class="badge"><a href="#!" class="grey-text" onclick="editProject(\''+doc.id+'\');"><i class="small material-icons">create</i></a></span></div>';
         //Add list item
         li.innerHTML = data;
         ul.appendChild(li);
@@ -53,9 +50,10 @@ function getProjects(){
   });
 }
 
-//Save new projects
+//Save and update projects
 function saveProject(){
   //Get values 
+  var id = document.getElementById('id_project').value;
   var name = document.getElementById('name').value;
   var description = document.getElementById('description').value;
   var contact = document.getElementById('contact').value;
@@ -67,7 +65,7 @@ function saveProject(){
   if(name === '' && description === '' && contact === '' && cost === '' && start_date === '' && deadline === '' && url === ''){ 
     M.toast({html: 'Favor de llenar todos los campos', classes: 'rounded'}); 
   }else{
-    projectsRef.doc().set({
+    projectsRef.doc(id).set({
       name: name,
       description: description,
       contact: contact,
@@ -77,12 +75,44 @@ function saveProject(){
       url : url
     }).then(function() {
       document.getElementById('new_project').style.display = 'none';
-      M.toast({html: 'Proyecto guardado', classes: 'rounded'}); 
-      console.log("Document successfully written!");
+      M.toast({html: 'Proyecto guardado', classes: 'rounded'});
+      //Clean inputs
+      document.getElementById('id_project').value = '';
+      document.getElementById('name').value = '';
+      document.getElementById('description').value = '';
+      document.getElementById('contact').value = '';
+      document.getElementById('cost').value = '';
+      document.getElementById('start_date').value = '';
+      document.getElementById('deadline').value = '';
+      document.getElementById('url').value = '';
+      //Restart inputs
+      M.updateTextFields();
     })
     .catch(function(error) {
         console.error("Error writing document: ", error);
     });
   }
   return false;
+}
+
+//Get edit data from project
+function editProject(id){
+  projectsRef.doc(id).get().then(function(doc) {
+      if (doc.exists) {
+          document.getElementById('id_project').value = doc.id;
+          document.getElementById('name').value = doc.data().name;
+          document.getElementById('description').value = doc.data().description;
+          document.getElementById('contact').value = doc.data().contact;
+          document.getElementById('cost').value = doc.data().cost;
+          document.getElementById('start_date').value = doc.data().start_date;
+          document.getElementById('deadline').value = doc.data().deadline;
+          document.getElementById('url').value = doc.data().url;
+          document.getElementById('new_project').style.display = 'block';
+      } else {
+          // doc.data() will be undefined in this case
+          console.log("No such document!");
+      }
+  }).catch(function(error) {
+      console.log("Error getting document:", error);
+  });
 }
