@@ -39,7 +39,7 @@ function getProjects(){
         var li = document.createElement("li");
         //Inner li data
         var data = '<div class="collapsible-header">'+doc.data().name+' <span class="badge">'+doc.data().deadline+'</span></div>';
-        data += '<div class="collapsible-body"><span>'+doc.data().description+'</span><span class="badge"><a href="#!" class="grey-text" onclick="editProject(\''+doc.id+'\');"><i class="small material-icons">create</i></a></span></div>';
+        data += '<div class="collapsible-body"><span>'+doc.data().description+'</span><span class="badge edit-badge"><a href="#!" class="grey-text" onclick="editProject(\''+doc.id+'\');"><i class="small material-icons">create</i></a></span></div>';
         //Add list item
         li.innerHTML = data;
         ul.appendChild(li);
@@ -64,8 +64,35 @@ function saveProject(){
   //Validate inputs
   if(name === '' && description === '' && contact === '' && cost === '' && start_date === '' && deadline === '' && url === ''){ 
     M.toast({html: 'Favor de llenar todos los campos', classes: 'rounded'}); 
-  }else{
+  }else if(id !== ''){
     projectsRef.doc(id).set({
+      name: name,
+      description: description,
+      contact: contact,
+      cost: cost,
+      start_date: start_date,
+      deadline: deadline,
+      url : url
+    }).then(function() {
+      document.getElementById('new_project').style.display = 'none';
+      M.toast({html: 'Proyecto guardado', classes: 'rounded'});
+      //Clean inputs
+      document.getElementById('id_project').value = '';
+      document.getElementById('name').value = '';
+      document.getElementById('description').value = '';
+      document.getElementById('contact').value = '';
+      document.getElementById('cost').value = '';
+      document.getElementById('start_date').value = '';
+      document.getElementById('deadline').value = '';
+      document.getElementById('url').value = '';
+      //Restart inputs
+      M.updateTextFields();
+    })
+    .catch(function(error) {
+        console.error("Error writing document: ", error);
+    });
+  }else{
+    projectsRef.add({
       name: name,
       description: description,
       contact: contact,
@@ -115,4 +142,20 @@ function editProject(id){
   }).catch(function(error) {
       console.log("Error getting document:", error);
   });
+}
+
+//Delete project
+function deleteProject(){
+  var checkstr =  confirm('Deseas eliminar el proyecto?');
+    if(checkstr === true){
+      var id = document.getElementById('id_project').value;
+      projectsRef.doc(id).delete().then(function(doc) {
+        document.getElementById('new_project').style.display = 'none';
+        M.toast({html: 'Proyecto eliminado', classes: 'rounded'}); 
+      }).catch(function(error) {
+          console.error("Error removing document: ", error);
+      });
+    }else{
+      return false;
+    }
 }
